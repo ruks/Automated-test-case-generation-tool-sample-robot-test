@@ -1,0 +1,45 @@
+*** Settings ***
+Library  lib.Standard
+Library  lib.AuthenticationLibrary
+Library  lib.AxisServiceClient
+Library  lib.ProxyServiceAdminLibrary
+Library  lib.Test
+
+*** Test Cases ***
+	
+Loging to ESB
+	${cook}=	Login As  admin  admin  localhost 			#logging as admin 
+	Log	${cook}												#print the session cookie
+	
+Add Proxy Echo	
+	init ProxyServiceAdmin									           #init service
+	add Proxy  echo2  http://localhost:8080/axis2/services/echo?wsdl   #adding proxy
+	Assert addProxy  unsuccessful								           #assert
+	
+echo Payload Test
+	invoke Operation In  echo  echoString  in  HelloWorld			#invoke operation	
+	Assert InvokeOperation  HelloWorld								#assert output
+	invoke Operation In  echo  echoInt  in  123	
+	Assert InvokeOperation  123
+	${out}	invoke Operation In  echo  echoStringArrays  a  AA  b  BB  c  11
+	Log	${out}	
+	
+Add Proxy Cal
+	add Proxy  Adcal  http://localhost:8080/axis2/services/AdvancedCalculator?wsdl   #adding proxy
+	Assert addProxy  unsuccessful								           #assert
+	
+Cal Payload test
+	${arr}	create Array  1  2  3  4  5  6
+	invoke Operation In  Adcal  getArrayLength  arr  ${arr}
+	Assert InvokeOperation  6
+	${arr}=	invoke Operation In  Adcal  getArray
+	Assert Array Length  ${arr}  10
+	Assert InvokeOperation  ruks_0  ruks_1  ruks_2  ruks_3  ruks_4  ruks_5  ruks_6  ruks_7  ruks_8  ruks_9
+	
+Test Sample
+	add Proxy  StockQuote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl
+	Assert addProxy  successful								          
+	invoke Operation In  StockQuote  getSimpleQuote  symbol  rukshan
+	Assert InvokeOperation  rukshan	
+	
+
