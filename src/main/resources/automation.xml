@@ -278,14 +278,16 @@
 
 	<robotconfig>
 		<project>
-			<location>/home/rukshan/Desktop/product-esb/modules/integration/tests-integration/Auto-TAF-mod</location>
+			<location>/home/rukshan/Desktop/product-esb/modules/integration/tests-integration/Auto-TAF-Sample-Robot-Test</location>
 		</project>
 		<product>
-			<location>/media/rukshan/Stuff/ubunto back/wso2esb-4.8.1</location>
+			<location>/home/rukshan/Desktop/wso2esb-4.8.1</location>
+<!-- 			<host>192.168.0.2</host> -->
 			<host>localhost</host>
 			<port>9443</port>
 		</product>
 		<server>
+<!-- 			<axis2>http://192.168.0.2:8280/services</axis2> -->
 			<axis2>http://localhost:8280/services</axis2>
 		</server>
 	</robotconfig>

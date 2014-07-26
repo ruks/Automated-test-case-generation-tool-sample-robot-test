@@ -1,0 +1,15 @@
+*** Settings ***
+Resource  taflibrary.txt
+
+*** Test Cases ***
+Loging to ESB
+	${cook}=	Login As  admin  admin  localhost 			#logging as admin 
+	Log	${cook}												#print the session cookie
+		
+Add Proxy quote
+	add Proxy  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl   #adding proxy
+	Assert addProxy  unsuccessful								           #assert
+	
+Test Sample									          
+	get Attibute Value Of OperationIn  quote  getSimpleQuote  last  symbol  rukshan
+	#Assert GetAttibuteValueOfOperationIn  1

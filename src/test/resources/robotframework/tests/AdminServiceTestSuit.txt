@@ -23,7 +23,36 @@ echo Payload Test
 	invoke Operation In  echo  echoInt  in  123	
 	Assert InvokeOperation  123
 	${out}	invoke Operation In  echo  echoStringArrays  a  AA  b  BB  c  11
-	Log	${out}	
+	Log	${out}
+		
+echo Payload Test2
+	set ServiceName  echo
+	set ServiceOperation  echoString
+	set ServiceParas  in  HelloWorld
+	${o}=	InvokeOperation
+	assertNotNull  ${o}
+	Assert InvokeOperation  HelloWorld
+	
+	set ServiceName  echo
+	set ServiceOperation  echoInt
+	set ServiceParas  in  123
+	${o}=	InvokeOperation
+	assertNotNull  ${o}
+	Assert InvokeOperation  123
+	
+	set ServiceName  echo
+	set ServiceOperation  echoStringArrays
+	set ServiceParas  a  AA
+	set ServiceParas  b  BB
+	set ServiceParas  c  123
+	${o}=	InvokeOperation
+	assertNotNull  ${o}
+	#${a}=	get OperationValue  a_r
+	#assertNotNull  ${a}
+	#${b}=	get OperationValue  b_r
+	#assertNotNull  ${b}
+	#${c}=	get OperationValue  c
+	#assertNotNull  ${c}
 	
 Add Proxy Cal
 	add Proxy  Adcal  http://localhost:8080/axis2/services/AdvancedCalculator?wsdl   #adding proxy
@@ -38,9 +67,9 @@ Cal Payload test
 	Assert InvokeOperation  ruks_0  ruks_1  ruks_2  ruks_3  ruks_4  ruks_5  ruks_6  ruks_7  ruks_8  ruks_9
 	
 Test Sample
-	add Proxy  StockQuote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl
+	add Proxy  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl
 	Assert addProxy  unsuccessful								          
-	invoke Operation In  StockQuote  getSimpleQuote  symbol  rukshan
+	invoke Operation In  quote  getSimpleQuote  symbol  rukshan
 	# Assert InvokeOperation  rukshan	
 	
 
