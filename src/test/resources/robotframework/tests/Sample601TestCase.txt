@@ -13,11 +13,10 @@ Test Sample
 	set ServiceName  quote
 	set ServiceOperation  getQuote
 	set ServiceParentChild  request
-	set ServiceParas  symbol  WSO2
-	${o}=	InvokeOperation
+	set ServiceParas  symbol  IBM
 	
-	${lastPrice}=	get OperationValue  last	
-	assertNotNull  ${lastPrice}  Fault: response message 'last' price null
+	${response}=	InvokeOperation
+	assertNotNull  ${response}  Response message null
 	
-	${symbol}=	get OperationValue  symbol
-	assertEquals  ${symbol}  WSO2  Fault: value 'symbol' mismatched
+	${symbolElement}=	get OperationValue  symbol
+	assertEquals  ${symbolElement}  IBM  Fault, invalid response		
