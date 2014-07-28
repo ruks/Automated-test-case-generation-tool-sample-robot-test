@@ -1,0 +1,23 @@
+*** Settings ***
+Resource  taflibrary.txt
+
+*** Test Cases ***
+Loging to ESB
+	Login As  admin  admin  localhost 			#logging as admin	
+		
+Add Proxy quote
+	add Proxy  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl   #adding proxy
+	Assert addProxy  unsuccessful								           #assert
+	
+Test Sample
+	set ServiceName  quote
+	set ServiceOperation  getQuote
+	set ServiceParentChild  request
+	set ServiceParas  symbol  MSFT
+	${response}=	InvokeOperation
+	
+	${msft}=	containString  ${response}  MSFT Company
+	assertTrue  ${msft}  No price tag in response
+	
+	${quote}=	containString  ${response}  getQuoteResponse
+	assertTrue  ${quote}  No price tag in response

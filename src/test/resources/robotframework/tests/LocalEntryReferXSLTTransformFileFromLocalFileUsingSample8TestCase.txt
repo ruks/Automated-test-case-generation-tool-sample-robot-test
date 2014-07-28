@@ -13,19 +13,19 @@ Test Sample
 	set ServiceName  quote
 	set ServiceOperation  getQuote
 	set ServiceParentChild  request
-	set ServiceParas  symbol  IBM
+	set ServiceParas  symbol  WSO2
 	
 	${response}=	InvokeOperation
 	assertNotNull  ${response}  Response message is null
 	
-	${isPrice}=	lib.Standard.Contains  ${response}  Price
-	assertTrue  ${isPrice}  No price tag in response
+	${name}=	containString  ${response}  name
+	assertTrue  ${name}  No price tag in response
 	
-	${isCode}=	lib.Standard.Contains  ${response}  Code
-	assertTrue  ${isCode}  No code tag in response
+	${last}=	containString  ${response}  last
+	assertTrue  ${last}  No code tag in response
 	
-	${Code}=	get OperationValue  Code
-	assertEquals  ${Code}  WSO2  Symbol not match
+	${symbol}=	get OperationValue  symbol
+	assertEquals  ${symbol}  WSO2  Symbol not match
 	
 #   assertEquals(response.getLocalName(), "CheckPriceResponse", "CheckPriceResponse not match");
 
