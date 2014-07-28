@@ -10,6 +10,6 @@ Add Proxy secquote
 	add Proxy  secquote  http://localhost:8080/axis2/services/SecureStockQuoteService?wsdl   #adding proxy
 	Assert addProxy  unsuccessful								           #assert
 
-Test Sample									          
+Test sample153Test									          
 	get Attibute Value Of OperationIn  secquote  getQuote  last  symbol  rukshan
 	#Assert GetAttibuteValueOfOperationIn  1

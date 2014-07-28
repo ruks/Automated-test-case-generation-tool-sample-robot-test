@@ -9,7 +9,7 @@ Add Proxy quote
 	add Proxy  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl   #adding proxy
 	Assert addProxy  unsuccessful								           #assert
 	
-Test Sample
+Test inSequenceSample15Test
 	set ServiceName  quote
 	set ServiceOperation  getQuote
 	set ServiceParentChild  request

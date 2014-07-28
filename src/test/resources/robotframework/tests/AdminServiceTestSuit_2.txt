@@ -1,0 +1,33 @@
+*** Settings ***
+#Library  lib.Standard
+#Library  lib.AuthenticationLibrary
+#Library  lib.AxisServiceClient
+#Library  lib.ProxyServiceAdminLibrary
+#Library  lib.Test
+Resource  taflibrary.txt
+
+*** Test Cases ***
+	
+Loging to ESB
+	${cook}=	Login As  admin  admin  localhost 			#logging as admin 
+	Log	${cook}												#print the session cookie
+	
+Add Proxy Cal
+	add Proxy  Adcal  http://localhost:8080/axis2/services/AdvancedCalculator?wsdl   #adding proxy
+	Assert addProxy  unsuccessful								           #assert
+
+Test Sample2	
+	${arr}	create Array  1  2  3  4  5  6
+	Assert Array Length  ${arr}  6
+				          
+	set ServiceName  Adcal
+	set ServiceOperation  getArrayLength
+	set ServiceParas  arr  ${arr}
+	${o}=	InvokeOperation
+	assertNotNull  ${o}	
+	Assert InvokeOperation  6
+	
+	set ServiceOperation  getArray		
+	${o2}=	InvokeOperation
+	assertNotNull  ${o2}
+	Assert InvokeOperation  ruks_0  ruks_1  ruks_2  ruks_3  ruks_4  ruks_5  ruks_6  ruks_7  ruks_8  ruks_9
