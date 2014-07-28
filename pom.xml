@@ -40,9 +40,9 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>Auto-TAF-cmd</groupId>
-			<artifactId>Auto-TAF-cmd</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.wso2.carbon.automation</groupId>
+			<artifactId>org.wso2.carbon.automation.tools</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
