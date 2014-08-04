@@ -15,8 +15,8 @@ Test testLocalEntryWithCorrectInput
 	set ServiceParentChild  request
 	set ServiceParas  symbol  IBM
 	
-	${response}=	InvokeOperation
+	${response}=	Invoke Operation
 	assertNotNull  ${response}  Response message null
 	
-	${symbolElement}=	get OperationValue  symbol
+	${symbolElement}=	get Response Attribute Value  symbol
 	assertEquals  ${symbolElement}  IBM  Fault, invalid response		

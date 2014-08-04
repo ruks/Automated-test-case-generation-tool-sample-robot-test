@@ -14,10 +14,10 @@ Test customSequencesAndEndpointsWithProxyServices
 	set ServiceOperation  getQuote
 	set ServiceParentChild  request
 	set ServiceParas  symbol  WSO2
-	${o}=	InvokeOperation
+	${response}=	Invoke Operation
 	
-	${lastPrice}=	get OperationValue  last	
+	${lastPrice}=	get Response Attribute Value  last	
 	assertNotNull  ${lastPrice}  Fault: response message 'last' price null
 	
-	${symbol}=	get OperationValue  symbol
+	${symbol}=	get Response Attribute Value  symbol
 	assertEquals  ${symbol}  WSO2  Fault: value 'symbol' mismatched

@@ -21,7 +21,7 @@ echo Payload Test
 	invoke Operation In  echo  echoString  in  HelloWorld			#invoke operation	
 	Assert InvokeOperation  HelloWorld								#assert output
 	invoke Operation In  echo  echoInt  in  123	
-	Assert InvokeOperation  123
+	Assert Invoke Operation  123
 	${out}	invoke Operation In  echo  echoStringArrays  a  AA  b  BB  c  11
 	Log	${out}
 		
@@ -29,14 +29,14 @@ echo Payload Test2
 	set ServiceName  echo
 	set ServiceOperation  echoString
 	set ServiceParas  in  HelloWorld
-	${o}=	InvokeOperation
+	${o}=	Invoke Operation
 	assertNotNull  ${o}
 	Assert InvokeOperation  HelloWorld
 	
 	set ServiceName  echo
 	set ServiceOperation  echoInt
 	set ServiceParas  in  123
-	${o}=	InvokeOperation
+	${o}=	Invoke Operation
 	assertNotNull  ${o}
 	Assert InvokeOperation  123
 	
@@ -45,13 +45,13 @@ echo Payload Test2
 	set ServiceParas  a  AA
 	set ServiceParas  b  BB
 	set ServiceParas  c  123
-	${o}=	InvokeOperation
+	${o}=	Invoke Operation
 	assertNotNull  ${o}
-	#${a}=	get OperationValue  a_r
+	#${a}=	get Response Attribute Value  a_r
 	#assertNotNull  ${a}
-	#${b}=	get OperationValue  b_r
+	#${b}=	get Response Attribute Value  b_r
 	#assertNotNull  ${b}
-	#${c}=	get OperationValue  c
+	#${c}=	get Response Attribute Value  c
 	#assertNotNull  ${c}
 	
 Add Proxy Cal

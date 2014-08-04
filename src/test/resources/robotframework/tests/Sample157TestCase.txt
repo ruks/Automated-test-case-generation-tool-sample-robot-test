@@ -18,7 +18,7 @@ Test conditionalRouterMediatorWithMultiRoutesTest
 	set ServiceParas  symbol  WSO2
 	set ServiceHttpHeader  foo  bar
 	
-	${response}=	InvokeOperation
+	${response}=	Invoke Operation
 	${quote1}=	containString  ${response}  GetQuoteResponse
 	assertTrue  ${quote1}
 	${quote2}=	containString  ${response}  WSO2 Company
@@ -27,7 +27,7 @@ Test conditionalRouterMediatorWithMultiRoutesTest
 	set ServiceParas  symbol  WSO2
 	set ServiceHttpHeader  my_custom_header1  foo1
 	
-	${response}=	InvokeOperation
+	${response}=	Invoke Operation
 	${quote1}=	containString  ${response}  GetQuoteResponse
 	assertTrue  ${quote1}
 	${quote2}=	containString  ${response}  WSO2 Company
@@ -37,7 +37,7 @@ Test conditionalRouterMediatorWithMultiRoutesTest
 	set ServiceHttpHeader  my_custom_header2  bar
 	set ServiceHttpHeader  my_custom_header3  foo
 	
-	${response}=	InvokeOperation
+	${response}=	Invoke Operation
 	${quote1}=	containString  ${response}  GetQuoteResponse
 	assertTrue  ${quote1}
 	${quote2}=	containString  ${response}  WSO2 Company

@@ -15,7 +15,7 @@ Test testLocalEntryXSLTFileFromLocalFile
 	set ServiceParentChild  request
 	set ServiceParas  symbol  WSO2
 	
-	${response}=	InvokeOperation
+	${response}=	Invoke Operation
 	assertNotNull  ${response}  Response message is null
 	
 	${name}=	containString  ${response}  name
@@ -24,7 +24,7 @@ Test testLocalEntryXSLTFileFromLocalFile
 	${last}=	containString  ${response}  last
 	assertTrue  ${last}  No code tag in response
 	
-	${symbol}=	get OperationValue  symbol
+	${symbol}=	get Response Attribute Value  symbol
 	assertEquals  ${symbol}  WSO2  Symbol not match
 	
 #   assertEquals(response.getLocalName(), "CheckPriceResponse", "CheckPriceResponse not match");
