@@ -6,8 +6,10 @@ Loging to ESB
 	Login As  admin  admin  localhost 			#logging as admin	
 		
 Add Proxy quote
-	add Proxy  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl   #adding proxy
-	Assert addProxy  unsuccessful								           #assert
+	${data}=	create Proxy Data  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl  
+	add Proxy  ${data}   #adding proxy
+	#Assert addProxy  unsuccessful								           #assert
+	Assert addProxy  successful
 	
 Test testLocalEntryWithCorrectInput
 	set ServiceName  quote
@@ -19,4 +21,8 @@ Test testLocalEntryWithCorrectInput
 	assertNotNull  ${response}  Response message null
 	
 	${symbolElement}=	get Response Attribute Value  symbol
-	assertEquals  ${symbolElement}  IBM  Fault, invalid response		
+	assertEquals  ${symbolElement}  IBM  Fault, invalid response
+	
+Delete Service
+	delete Proxy Service  quote
+	Assert deleteProxyService  successful		

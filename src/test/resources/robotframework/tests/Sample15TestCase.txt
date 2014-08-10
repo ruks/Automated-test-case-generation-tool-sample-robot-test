@@ -6,8 +6,10 @@ Loging to ESB
 	Login As  admin  admin  localhost 			#logging as admin	
 		
 Add Proxy quote
-	add Proxy  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl   #adding proxy
-	Assert addProxy  unsuccessful								                          #assert
+	${data}=	create Proxy Data  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl  
+	add Proxy  ${data}   #adding proxy
+	#Assert addProxy  unsuccessful								                          #assert
+	Assert addProxy  successful
 	
 Test inSequenceSample15Test
 	set ServiceName  quote
@@ -21,3 +23,7 @@ Test inSequenceSample15Test
 	
 	${quote}=	containString  ${response}  getQuoteResponse
 	assertTrue  ${quote}  'getQuoteResponse' String not found !
+	
+Delete Service
+	delete Proxy Service  quote
+	Assert deleteProxyService  successful

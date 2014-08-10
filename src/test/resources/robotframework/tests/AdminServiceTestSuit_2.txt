@@ -13,9 +13,11 @@ Loging to ESB
 	Log	${cook}												#print the session cookie
 	
 Add Proxy Cal
-	add Proxy  Adcal  http://localhost:8080/axis2/services/AdvancedCalculator?wsdl   #adding proxy
-	Assert addProxy  unsuccessful								           #assert
-
+	${data}=	create Proxy Data  Adcal  http://localhost:8080/axis2/services/AdvancedCalculator?wsdl
+	add Proxy  ${data}   #adding proxy
+	#Assert addProxy  unsuccessful								           #assert
+	Assert addProxy  successful
+	
 Test Sample2	
 	${arr}	create Array  1  2  3  4  5  6
 	Assert Array Length  ${arr}  6
@@ -31,3 +33,7 @@ Test Sample2
 	${o2}=	Invoke Operation
 	assertNotNull  ${o2}
 	Assert InvokeOperation  ruks_0  ruks_1  ruks_2  ruks_3  ruks_4  ruks_5  ruks_6  ruks_7  ruks_8  ruks_9
+	
+Delete Service
+	delete Proxy Service  Adcal
+	Assert deleteProxyService  successful 

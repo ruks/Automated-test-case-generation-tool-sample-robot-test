@@ -6,8 +6,10 @@ Loging to ESB
 	Login As  admin  admin  localhost 			#logging as admin	
 		
 Add Proxy quote
-	add Proxy  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl   #adding proxy
-	Assert addProxy  unsuccessful								           #assert
+	${data}=	create Proxy Data  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl  
+	add Proxy  ${data}   #adding proxy
+	#Assert addProxy  unsuccessful								           #assert
+	Assert addProxy  successful
 	
 Test testLocalEntryXSLTFileFromLocalFile
 	set ServiceName  quote
@@ -29,4 +31,6 @@ Test testLocalEntryXSLTFileFromLocalFile
 	
 #   assertEquals(response.getLocalName(), "CheckPriceResponse", "CheckPriceResponse not match");
 
-        
+Delete Service
+	delete Proxy Service  quote
+	Assert deleteProxyService  successful

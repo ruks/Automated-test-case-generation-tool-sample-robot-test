@@ -7,8 +7,10 @@ Loging to ESB
 	Log	${cook}												#print the session cookie
 		
 Add Proxy quote
-	add Proxy  quote  http://localhost:8080/axis2/services/StockQuoteService?wsdl   #adding proxy
-	Assert addProxy  unsuccessful								           #assert
+	${data}=	create Proxy Data  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl  
+	add Proxy  ${data}   #adding proxy
+	#Assert addProxy  unsuccessful								           #assert
+	Assert addProxy  successful
 
 Test conditionalRouterMediatorWithMultiRoutesTest									          
 	set ServiceName  quote
@@ -42,3 +44,7 @@ Test conditionalRouterMediatorWithMultiRoutesTest
 	assertTrue  ${quote1}
 	${quote2}=	containString  ${response}  WSO2 Company
 	assertTrue  ${quote2}
+	
+Delete Service
+	delete Proxy Service  quote
+	Assert deleteProxyService  successful
