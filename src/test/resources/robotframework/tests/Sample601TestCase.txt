@@ -3,7 +3,7 @@ Resource  taflibrary.txt
 
 *** Test Cases ***
 Loging to ESB
-	Login As  admin  admin  localhost 			#logging as admin	
+	Login As  admin-admin 			#logging as admin	
 		
 Add Proxy quote
 	${data}=	create Proxy Data  quote  http://localhost:8080/axis2/services/SimpleStockQuoteService?wsdl  

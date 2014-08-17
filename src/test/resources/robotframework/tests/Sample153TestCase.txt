@@ -3,7 +3,7 @@ Resource  taflibrary.txt
 
 *** Test Cases ***
 Loging to ESB
-	${cook}=	Login As  admin  admin  localhost 			#logging as admin 
+	${cook}=	Login As  admin-admin 			#logging as admin 
 	Log	${cook}												#print the session cookie
 		
 Add Proxy secquote
