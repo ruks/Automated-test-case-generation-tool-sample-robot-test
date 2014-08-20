@@ -1,8 +1,8 @@
 *** Settings ***
-Library  lib.Standard
-Library  lib.AuthenticationLibrary
-Library  lib.AxisServiceClient
-Library	 lib.AssertLibrary
-Library	 lib.ObjectPool
-Library  robotlib.ProxyServiceAdminLibrary
+Library  client.support.modules.Standard
+Library  client.support.modules.AuthenticationLibrary
+Library  client.support.modules.AxisServiceClient
+Library	 client.support.modules.AssertLibrary
+Library	 client.support.modules.ObjectPool
+Library  clients.ProxyServiceAdminLibrary
 
